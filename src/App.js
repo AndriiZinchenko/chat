@@ -7,20 +7,21 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: localStorage.getItem('user')
+      user: ''
     }
   }
   
   setUser = (user) => {
     this.setState({ user })
-    localStorage.setItem('user', user);
   }
   
   render() {
     return (
       <div className="App">
         <Registration setUser={this.setUser} />
-        <Chat user={this.state.user} />
+        {this.state.user && (
+          <Chat user={this.state.user} />
+        )}
       </div>
     )
   }

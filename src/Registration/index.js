@@ -4,12 +4,15 @@ import React from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 
+import { getUser, addUser } from "../api/users";
+
 class Registration extends React.Component {
   constructor() {
 	super();
 	this.state = {
 	  name: '',
 	  pass: '',
+	  passError: '',
 	}
   }
   
@@ -18,7 +21,29 @@ class Registration extends React.Component {
   }
   
   setUser = () => {
-    this.props.setUser(this.state.name);
+	this.setState({ passError: '' })
+	getUser().then((res) => {
+	  if (res.length > 0) {
+		const user = res.find(({ name }) => name === this.state.name);
+		if (!user) {
+		  addUser(this.state).then((res) => {
+			console.log(res);
+			this.props.setUser(res.name);
+		  })
+		} else {
+		  if (user.pass === this.state.pass) {
+			this.props.setUser(user.name);
+		  } else {
+		    this.setState({ passError: 'password is not valid' })
+		  }
+		}
+	  } else {
+	    addUser(this.state).then((res) => {
+		  console.log(res);
+		  this.props.setUser(res.name);
+		})
+	  }
+	});
   }
   
   render() {
@@ -30,6 +55,8 @@ class Registration extends React.Component {
 		  onChange={this.createOnChange('name')}
 		/>
 		<TextField
+		  error={this.state.passError}
+		  helperText={this.state.passError}
 		  label="Password"
 		  value={this.state.pass}
 		  type='password'

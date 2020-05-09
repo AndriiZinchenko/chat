@@ -22,8 +22,19 @@ const deleteMessage = (id) => (
   }).then((res) => res.json())
 )
 
+const editMessage = (id, message) => (
+  fetch(`${url}/${id}`, {
+	method: "PATCH",
+	headers: {
+	  "Content-Type": "application/json"
+	},
+	body: JSON.stringify(message)
+  }).then((res) => res.json())
+)
+
 export {
   getMessage,
   addMessage,
+  editMessage,
   deleteMessage,
 }

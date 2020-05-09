@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 import Message from "./components/Message";
 
-import { getMessage, addMessage, deleteMessage } from "../api/messages";
+import { getMessage, addMessage, deleteMessage, editMessage } from "../api/messages";
 
 class Chat extends React.Component{
   constructor() {
@@ -48,6 +48,12 @@ class Chat extends React.Component{
 	});
   }
   
+  onEditMessage = (id) => (message) => (
+	editMessage(id, message).then(() => {
+	  this.setList();
+	})
+  )
+  
   render() {
     return (
       <div className="Chat">
@@ -56,6 +62,7 @@ class Chat extends React.Component{
 		  <Message
 			key={item.id}
 			onDeleteMessage={this.onDeleteMessage(item.id)}
+			onEditMessage={this.onEditMessage(item.id)}
 			title={item.title}
 			text={item.text}
 			myMessage={this.props.user === item.title}

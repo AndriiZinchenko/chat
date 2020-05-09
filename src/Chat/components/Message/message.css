@@ -6,6 +6,10 @@
     float: left;
 }
 
+.Message button {
+    width: 20px;
+}
+
 .Message_my {
     float: right;
     background-color: #7fffd452 !important;
