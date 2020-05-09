@@ -25,7 +25,7 @@ class Message extends React.Component {
 		  <div>{this.props.title}</div>
 		  <div>{this.props.text}</div>
 		</div>
-		<IconButton className="Message_delete" aria-label="delete">
+		<IconButton onClick={this.props.onDeleteMessage} className="Message_delete" aria-label="delete">
 		  <DeleteIcon />
 		</IconButton>
 	  </Paper>

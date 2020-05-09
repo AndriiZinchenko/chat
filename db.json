@@ -1,0 +1,19 @@
+{
+  "messages": [
+    {
+      "title": "json-server",
+      "text": "some message",
+      "id": 2
+    },
+    {
+      "title": "Andrii",
+      "text": "asdasdas",
+      "id": 3
+    },
+    {
+      "title": "Test",
+      "text": "asdasda",
+      "id": 4
+    }
+  ]
+}
