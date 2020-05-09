@@ -1,0 +1,21 @@
+.Chat {
+    width: 400px;
+    height: 500px;
+    background-color: ghostwhite;
+    margin: 20px auto;
+    position: relative;
+
+}
+
+.Chat_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid darkgrey;
+}
+
+.Chat_input {
+    position: absolute;
+    bottom: 0;
+    width: 400px;
+}
